@@ -1,0 +1,139 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: linear-gradient(to right, #6dd5ed, #2193b0);
+}
+
+.selection-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.selection-container button {
+  padding: 10px 30px;
+  margin: 0 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #007bff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.selection-container button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.form-container {
+  background: white;
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.8);
+  outline: none;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+
+/* CSS cho bảng quản lý tài khoản */
+#userTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#userTable thead {
+  background-color: #007bff;
+  color: white;
+}
+
+#userTable thead th {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+#userTable tbody td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+#userTable tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+/* Style chung cho tất cả các nút hành động */
+.action-btn {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: 1px solid #ccc; /* Đảm bảo rằng tất cả các nút có viền */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Style riêng cho từng loại nút */
+.activate-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.deactivate-button {
+  background-color: #ffc107;
+  color: black;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Style cho hover các nút */
+.action-btn:hover {
+  opacity: 0.8;
+}
