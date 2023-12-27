@@ -127,3 +127,17 @@ function deleteUser(index) {
   populateUserTable();
   alert(`Người dùng ${deletedUser.username} đã bị xóa.`);
 }
+
+document.getElementById('logoutButton').addEventListener('click', function() {
+  // Ẩn bảng quản lý
+  document.getElementById('adminPanel').style.display = 'none';
+
+  // Hiển thị lại các form lựa chọn ban đầu
+  document.querySelector('.selection-container').style.display = 'block';
+
+  // Nếu cần, ẩn các form đăng nhập/đăng ký người dùng
+  document.getElementById('userForm').style.display = 'none';
+
+  // Đặt lại trạng thái đăng nhập nếu có
+  // resetLoginState();
+});
