@@ -31,12 +31,31 @@ document.getElementById('registration-form').addEventListener('submit', function
   if (userExists) {
       alert('Người dùng đã tồn tại. Vui lòng chọn tên đăng nhập hoặc email khác.');
   } else {
-      users.push({ username, email, password, status: 'Không hoạt động' });
-      alert('Đăng ký thành công.');
+      users.push({ username, email, password, status: 'Không Hoạt Động' });
+      alert('Đăng ký thành công. Tài khoản của bạn đang chờ được kích hoạt bởi admin.');
   }
 });
 
-// Xử lý đăng nhập người dùng
+
+// // Xử lý đăng nhập người dùng
+// document.getElementById('login-form').addEventListener('submit', function(e) {
+//   e.preventDefault();
+//   let username = document.getElementById('username').value;
+//   let password = document.getElementById('password').value;
+
+//   let user = users.find(user => user.username === username && user.password === password);
+//   if (user) {
+//       if (user.status === 'Hoạt Động') {
+//           alert('Đăng nhập thành công.');
+//           window.location.href = 'https://tuan07112004.github.io/SLIMJOY-/?fbclid=IwAR0pcN_b02_5AA6aOxV7s4q5H3mnRX0v5acHHskZhmuub4pMI1vZl3XvFhw';
+//       } else {
+//           alert('Tài khoản của bạn chưa được kích hoạt.');
+//       }
+//   } else {
+//       alert('Thông tin đăng nhập không chính xác.');
+//   }
+// });
+
 document.getElementById('login-form').addEventListener('submit', function(e) {
   e.preventDefault();
   let username = document.getElementById('username').value;
@@ -45,10 +64,17 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
   let user = users.find(user => user.username === username && user.password === password);
   if (user) {
       alert('Đăng nhập thành công.');
+      window.location.href = 'https://tuan07112004.github.io/SLIMJOY-/?fbclid=IwAR0pcN_b02_5AA6aOxV7s4q5H3mnRX0v5acHHskZhmuub4pMI1vZl3XvFhw';
   } else {
       alert('Thông tin đăng nhập không chính xác.');
   }
 });
+
+function changeUserStatus(index, newStatus) {
+  users[index].status = newStatus; // Cập nhật trạng thái trong mảng
+  populateUserTable(); // Cập nhật lại bảng người dùng trên UI
+}
+
 
 // Xử lý đăng nhập admin
 document.getElementById('adminForm').querySelector('form').addEventListener('submit', function(e) {
@@ -89,6 +115,14 @@ document.getElementById('logoutButton').addEventListener('click', function() {
   document.getElementById('adminPanel').style.display = 'none';
   document.querySelector('.selection-container').style.display = 'block';
 });
+
+// Hàm cập nhật trạng thái người dùng trong bảng
+function updateUserStatusInTable(row, newStatus) {
+  let statusCell = row.cells[3];
+  statusCell.textContent = newStatus;
+  statusCell.setAttribute('data-status', newStatus);
+}
+
 // Hàm để mã hóa email
 function encryptEmail(email) {
   const parts = email.split('@');
@@ -167,19 +201,6 @@ function populateUserTable() {
   });
 }
 
-// Hàm thay đổi trạng thái người dùng
-function changeUserStatus(index, newStatus) {
-  users[index].status = newStatus;
-  let row = document.getElementById('userTable').querySelector('tbody').rows[index];
-  updateUserStatusInTable(row, newStatus);
-}
-
-// Hàm cập nhật trạng thái người dùng trong bảng
-function updateUserStatusInTable(row, newStatus) {
-  let statusCell = row.cells[3];
-  statusCell.textContent = newStatus;
-  statusCell.setAttribute('data-status', newStatus);
-}
 // Xử lý sự kiện khi click vào nút Mã hóa
 document.getElementById('encrypt-button').addEventListener('click', function() {
   let emailCells = document.querySelectorAll('#userTable tbody td:nth-child(2)');
