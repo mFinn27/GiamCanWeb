@@ -1,11 +1,5 @@
-document.getElementById('userSelect').addEventListener('click', function() {
-  document.getElementById('userForm').style.display = 'block';
-  document.getElementById('adminForm').style.display = 'none';
-});
-
 document.getElementById('adminSelect').addEventListener('click', function() {
   document.getElementById('adminForm').style.display = 'block';
-  document.getElementById('userForm').style.display = 'none';
 });
 
 // Thêm mã xử lý sự kiện submit cho các form ở đây nếu cần
@@ -20,21 +14,21 @@ let users = [
   { username: 'minhhh', email: 'minhh@gmail.com', status: 'Không Hoạt Động',password: '4321'  },
   { username: 'minhh', email: 'minh2@gmail.com', status: 'Không Hoạt Động',password: '9356'  },
 ];
-// Xử lý đăng ký người dùng
-document.getElementById('registration-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  let username = document.getElementById('new-username').value;
-  let email = document.getElementById('email').value;
-  let password = document.getElementById('new-password').value;
+// // Xử lý đăng ký người dùng
+// document.getElementById('registration-form').addEventListener('submit', function(e) {
+//   e.preventDefault();
+//   let username = document.getElementById('new-username').value;
+//   let email = document.getElementById('email').value;
+//   let password = document.getElementById('new-password').value;
 
-  let userExists = users.some(user => user.username === username || user.email === email);
-  if (userExists) {
-      alert('Người dùng đã tồn tại. Vui lòng chọn tên đăng nhập hoặc email khác.');
-  } else {
-      users.push({ username, email, password, status: 'Không Hoạt Động' });
-      alert('Đăng ký thành công. Tài khoản của bạn đang chờ được kích hoạt bởi admin.');
-  }
-});
+//   let userExists = users.some(user => user.username === username || user.email === email);
+//   if (userExists) {
+//       alert('Người dùng đã tồn tại. Vui lòng chọn tên đăng nhập hoặc email khác.');
+//   } else {
+//       users.push({ username, email, password, status: 'Không Hoạt Động' });
+//       alert('Đăng ký thành công. Tài khoản của bạn đang chờ được kích hoạt bởi admin.');
+//   }
+// });
 
 
 // // Xử lý đăng nhập người dùng
@@ -56,25 +50,23 @@ document.getElementById('registration-form').addEventListener('submit', function
 //   }
 // });
 
-document.getElementById('login-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  let username = document.getElementById('username').value;
-  let password = document.getElementById('password').value;
+// document.getElementById('login-form').addEventListener('submit', function(e) {
+//   e.preventDefault();
+//   let username = document.getElementById('username').value;
+//   let password = document.getElementById('password').value;
 
-  let user = users.find(user => user.username === username && user.password === password);
-  if (user) {
-      alert('Đăng nhập thành công.');
-      window.location.href = 'https://tuan07112004.github.io/SLIMJOY-/?fbclid=IwAR0pcN_b02_5AA6aOxV7s4q5H3mnRX0v5acHHskZhmuub4pMI1vZl3XvFhw';
-  } else {
-      alert('Thông tin đăng nhập không chính xác.');
-  }
-});
+//   let user = users.find(user => user.username === username && user.password === password);
+//   if (user) {
+//       alert('Đăng nhập thành công.');
+//   } else {
+//       alert('Thông tin đăng nhập không chính xác.');
+//   }
+// });
 
 function changeUserStatus(index, newStatus) {
   users[index].status = newStatus; // Cập nhật trạng thái trong mảng
   populateUserTable(); // Cập nhật lại bảng người dùng trên UI
 }
-
 
 // Xử lý đăng nhập admin
 document.getElementById('adminForm').querySelector('form').addEventListener('submit', function(e) {
@@ -85,10 +77,14 @@ document.getElementById('adminForm').querySelector('form').addEventListener('sub
     if (username === 'admin' && password === 'admin123') {
         alert('Đăng nhập admin thành công.');
         // Có thể chuyển hướng đến trang quản trị hoặc hiển thị bảng điều khiển admin tại đây
-    } else {
+        document.getElementById('adminForm').style.display = 'none';
+        document.querySelector('.selection-container').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block'; // Hiển thị bảng quản lý
+        populateUserTable(); // Điền dữ liệu vào bảng
+      } else {
         alert('Thông tin đăng nhập admin không chính xác.');
-    }
-});
+      }
+    });
 
 // Xử lý đăng nhập admin và hiển thị bảng quản lý
 document.getElementById('adminForm').querySelector('form').addEventListener('submit', function(e) {
